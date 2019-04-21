@@ -71,6 +71,7 @@ class fragment_principal : Fragment() {
     }
 
 
+
     private inner class FetchPokemonTask : AsyncTask<String, Void, String>() {
 
         override fun doInBackground(vararg query: String): String {
