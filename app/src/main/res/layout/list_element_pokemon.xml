@@ -11,9 +11,8 @@
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-
+            android:orientation="horizontal"
+            android:background="@color/colorAccent">
         <TextView
                 android:id="@+id/tv_pokemon_id"
                 android:layout_width="wrap_content"

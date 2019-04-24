@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_fragment_principal.*
 import kotlinx.android.synthetic.main.fragment_fragment_principal.view.*
 import me.nelsoncastro.pokeapi.models.Pokemon
@@ -91,29 +92,23 @@ class fragment_principal : Fragment() {
         }
 
         override fun onPostExecute(pokemonInfo: String) {
-            val pokemon = if (!pokemonInfo.isEmpty()) {
-                val root = JSONObject(pokemonInfo)
-                val results = root.getJSONArray("results")
-                MutableList(20) { i ->
-                    val result = JSONObject(results[i].toString())
-                    Pokemon(i,
-                        result.getString("name").capitalize(),
-                        R.string.n_a_value.toString(),
-                        R.string.n_a_value.toString(),
-                        R.string.n_a_value.toString(),
-                        R.string.n_a_value.toString(),
-                        result.getString("url"),
-                        R.string.n_a_value.toString())
-                }
-            } else {
-                MutableList(20) { i ->
-                    Pokemon(i, R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(),R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString())
-                }
+            listPokemon(pokemonInfo,"results")
             }
-            initRecycler(pokemon)
-        }
     }
-
+    fun listPokemon(pokemonInfo: String,name: String){
+        val pokemon = if (!pokemonInfo.isEmpty()) {
+            val root = JSONObject(pokemonInfo)
+            val results = root.getJSONArray(name)
+            MutableList(20) { i ->
+                Gson().fromJson<Pokemon>(results[i].toString(),Pokemon::class.java)
+            }
+        } else {
+            MutableList(20) { i ->
+                Pokemon(i, R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(),R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString())
+            }
+        }
+        initRecycler(pokemon)
+    }
     private inner class QueryPokemonTask : AsyncTask<String, Void, String>() {
 
         override fun doInBackground(vararg query: String): String {
@@ -132,29 +127,8 @@ class fragment_principal : Fragment() {
 
         }
         override fun onPostExecute(pokemonInfo: String) {
-            val pokemon = if (!pokemonInfo.isEmpty()) {
-                val root = JSONObject(pokemonInfo)
-                val results = root.getJSONArray("pokemon")
-                MutableList(20) { i ->
-                    val resulty = JSONObject(results[i].toString())
-                    val result = JSONObject(resulty.getString("pokemon"))
-
-                    Pokemon(i,
-                        result.getString("name").capitalize(),
-                        R.string.n_a_value.toString(),
-                        R.string.n_a_value.toString(),
-                        R.string.n_a_value.toString(),
-                        R.string.n_a_value.toString(),
-                        result.getString("url"),
-                        R.string.n_a_value.toString())
-                }
-            } else {
-                MutableList(20) { i ->
-                    Pokemon(i, R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(),R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString())
-                }
+            listPokemon(pokemonInfo,"pokemon")
             }
-            initRecycler(pokemon)
-        }
     }
 
     override fun onAttach(context: Context) {
