@@ -9,22 +9,20 @@ import me.nelsoncastro.pokeapi.models.Pokemon
 
 class PokemonAdapter(val items: List<Pokemon>, val clickListener: (Pokemon) -> Unit):RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_element_pokemon, parent, false)
+    override fun onCreateViewHolder(vista: ViewGroup, tipoVista: Int): ViewHolder {
+        val view = LayoutInflater.from(vista.context).inflate(R.layout.list_element_pokemon, vista, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount() = items.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position], clickListener)
+    override fun onBindViewHolder(holder: ViewHolder, posicion: Int) = holder.bind(items[posicion], clickListener)
 
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun bind(item: Pokemon, clickListener: (Pokemon) -> Unit) = with(itemView) {
-            tv_pokemon_id.text = item.id.toString()
-            tv_pokemon_name.text = item.name
-            tv_pokemon_type.text = item.url
-            this.setOnClickListener { clickListener(item) }
+    class ViewHolder(item: View): RecyclerView.ViewHolder(item){
+        fun bind(item: Pokemon, eventoClick: (Pokemon) -> Unit) = with(itemView) {
+            pokeName.text = item.name
+            this.setOnClickListener { eventoClick(item) }
         }
     }
 }

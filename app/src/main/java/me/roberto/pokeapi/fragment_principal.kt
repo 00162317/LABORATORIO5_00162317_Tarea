@@ -1,9 +1,7 @@
 package me.nelsoncastro.pokeapi
 
 import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -14,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_fragment_principal.*
 import kotlinx.android.synthetic.main.fragment_fragment_principal.view.*
 import me.nelsoncastro.pokeapi.models.Pokemon
 import me.nelsoncastro.pokeapi.utilities.NetworkUtils
@@ -64,7 +61,7 @@ class fragment_principal : Fragment() {
             Log.d("Hola", "Land")
         }
 
-        viewGlobal.rv_pokemon_list.apply {
+        viewGlobal.recyclerPokemonList.apply {
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapter
