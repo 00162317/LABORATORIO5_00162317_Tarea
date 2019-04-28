@@ -1,4 +1,4 @@
-package me.nelsoncastro.pokeapi.utilities
+package me.roberto.pokeapi.utilities
 
 import android.net.Uri
 import android.util.Log
@@ -11,8 +11,6 @@ import java.util.*
 
 class NetworkUtils {
     val POKEMON_API_BASE_URL = "https://pokeapi.co/api/v2/"
-    val POKEMON_INFO = "pokemon"
-    val POKEMON_TYPE = "type"
 
     private val TAG = NetworkUtils::class.java.simpleName
 

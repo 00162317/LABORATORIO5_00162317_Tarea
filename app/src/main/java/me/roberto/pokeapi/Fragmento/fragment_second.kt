@@ -1,6 +1,5 @@
-package me.nelsoncastro.pokeapi
+package me.roberto.pokeapi.Fragmento
 
-import android.content.Context
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
@@ -10,10 +9,10 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_fragment_second.*
 import kotlinx.android.synthetic.main.fragment_fragment_second.view.*
-import me.nelsoncastro.pokeapi.models.Pokemon
-import me.nelsoncastro.pokeapi.utilities.NetworkUtils
+import me.roberto.pokeapi.R
+import me.roberto.pokeapi.models.Pokemon
+import me.roberto.pokeapi.utilities.NetworkUtils
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
@@ -26,7 +25,7 @@ class fragment_second : Fragment() {
     lateinit var viewGlobal : View
 
     companion object {
-        fun newInstance(uri : String) : fragment_second{
+        fun newInstance(uri : String) : fragment_second {
             var pokeFragment = fragment_second()
             pokeFragment.uri = uri
             return pokeFragment
@@ -111,7 +110,8 @@ class fragment_second : Fragment() {
                     JSONObject(sprites).getString("front_default"))
 
             } else {
-                Pokemon(0, R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(),R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString())
+                Pokemon(0, R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(),
+                    R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString())
             }
             init(pokemon)
         }

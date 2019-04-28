@@ -1,4 +1,4 @@
-package me.nelsoncastro.pokeapi
+package me.roberto.pokeapi.Fragmento
 
 import android.content.Context
 import android.content.res.Configuration
@@ -13,8 +13,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_fragment_principal.view.*
-import me.nelsoncastro.pokeapi.models.Pokemon
-import me.nelsoncastro.pokeapi.utilities.NetworkUtils
+import me.roberto.pokeapi.recycler.PokemonAdapter
+import me.roberto.pokeapi.R
+import me.roberto.pokeapi.models.Pokemon
+import me.roberto.pokeapi.utilities.NetworkUtils
 import org.json.JSONObject
 import java.io.IOException
 
@@ -54,10 +56,14 @@ class fragment_principal : Fragment() {
         viewManager = LinearLayoutManager(viewGlobal.context)
 
         if (viewGlobal.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
-            viewAdapter = PokemonAdapter(pokemon, {pokemonItem: Pokemon -> listenerTools?.pokePortrait(pokemonItem)})
+            viewAdapter = PokemonAdapter(
+                pokemon,
+                { pokemonItem: Pokemon -> listenerTools?.pokePortrait(pokemonItem) })
             Log.d("Hola", "Port")
         } else{
-            viewAdapter = PokemonAdapter(pokemon, {pokemonItem: Pokemon -> listenerTools?.landScape(pokemonItem)})
+            viewAdapter = PokemonAdapter(
+                pokemon,
+                { pokemonItem: Pokemon -> listenerTools?.landScape(pokemonItem) })
             Log.d("Hola", "Land")
         }
 
@@ -101,7 +107,8 @@ class fragment_principal : Fragment() {
             }
         } else {
             MutableList(20) { i ->
-                Pokemon(i, R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(),R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString())
+                Pokemon(i, R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(),
+                    R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString(), R.string.n_a_value.toString())
             }
         }
         initRecycler(pokemon)

@@ -1,4 +1,4 @@
-package me.nelsoncastro.pokeapi.models
+package me.roberto.pokeapi.models
 
 import android.os.Parcel
 import android.os.Parcelable
